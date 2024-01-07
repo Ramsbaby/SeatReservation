@@ -28,41 +28,6 @@ public class SeatService {
 
     private final int TOTAL_SEAT_SIZE = 2;
 
-    //    @Transactional
-//    public Mono<SeatResponseDto> reserveSeat(Long seatId, Long userId) {
-//        User user = userService.findUserById(userId);
-//
-//        Seat seat = entityManager.find(Seat.class, seatId, LockModeType.PESSIMISTIC_WRITE);
-//
-//        LocalDate today = LocalDate.now();
-//
-//        int reservedSeatsCount = seatRepository.countByReservedDate(today);
-//
-//        if (reservedSeatsCount >= TOTAL_SEAT_SIZE) {
-//            user.setWorkType(WorkType.REMOTE);
-//            userRepository.save(user);
-//            return new SeatResponseDto(seatId, userId);
-//        }
-//
-//        if (seat != null) {
-//            Optional<SeatReservationHistory> history = historyRepository.findBySeatIdAndUserId(seatId, userId);
-//            if (history.isPresent()) {//하루에 한번 save 가능 검사로직
-//                if (history.get().getReservationDate().equals(seat.getReservedDate())) {
-//                    throw new AlreadyReservedTodayException("Seat is already reserved today by Same Id: " + seatId);
-//                }
-//            }
-//
-//            throw new AlreadyExistSeatException("Seat is already reserved with user id: " + seat.getReservedBy().getUserId());
-//        }
-//
-//        seat = Seat.of(seatId, user);
-//        user.setWorkType(WorkType.OFFICE);
-//        userRepository.save(user);
-//        seatRepository.save(seat);
-//        saveHistory(seatId, userId);
-//
-//        return new SeatResponseDto(seatId, userId);
-//    }
     @Transactional
     public Mono<SeatResponseDto> reserveSeat(Long seatId, Long userId) {
         return userService.findUserById(userId)

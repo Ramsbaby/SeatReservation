@@ -28,8 +28,8 @@ public class SeatController {
     }
 
     @DeleteMapping("/cancel")
-    public void remove(@RequestParam("userId") Long userId,
-                       @RequestParam("seatId") Long seatId) {
-        seatService.removeSeat(userId, seatId);
+    public Mono<Void> remove(@RequestParam("userId") Long userId,
+                             @RequestParam("seatId") Long seatId) {
+        return seatService.removeSeat(userId, seatId);
     }
 }
