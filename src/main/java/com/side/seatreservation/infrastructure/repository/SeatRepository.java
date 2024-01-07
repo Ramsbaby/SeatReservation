@@ -1,4 +1,4 @@
-package com.side.seatreservation.domain.repository;
+package com.side.seatreservation.infrastructure.repository;
 
 import com.side.seatreservation.domain.model.seat.Seat;
 import org.springframework.data.repository.reactive.ReactiveCrudRepository;

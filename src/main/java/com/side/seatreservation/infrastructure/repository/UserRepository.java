@@ -1,4 +1,4 @@
-package com.side.seatreservation.domain.repository;
+package com.side.seatreservation.infrastructure.repository;
 
 import com.side.seatreservation.domain.model.user.User;
 import org.springframework.data.jpa.repository.JpaRepository;

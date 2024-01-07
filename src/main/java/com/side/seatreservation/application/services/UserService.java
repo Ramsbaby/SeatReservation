@@ -3,7 +3,7 @@ package com.side.seatreservation.application.services;
 import com.side.seatreservation.domain.exception.NotExistUserException;
 import com.side.seatreservation.domain.model.user.User;
 import com.side.seatreservation.domain.model.user.UserResponseDto;
-import com.side.seatreservation.domain.repository.UserRepository;
+import com.side.seatreservation.infrastructure.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
