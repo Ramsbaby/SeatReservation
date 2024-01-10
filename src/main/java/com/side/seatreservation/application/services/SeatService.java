@@ -28,7 +28,6 @@ public class SeatService {
 
     private final int TOTAL_SEAT_SIZE = 2;
 
-    @Transactional
     public Mono<SeatResponseDto> reserveSeat(Long seatId, Long userId) {
         return userService.findUserById(userId)
                 .flatMap(user -> reserveSeatForUser(seatId, user));
@@ -41,11 +40,6 @@ public class SeatService {
                 .map(seat -> new SeatResponseDto(seat.getSeatId(), user.getUserId()));
     }
 
-    private Mono<Boolean> checkReservationHistory(Seat seat, User user) {
-        return historyRepository.findBySeatIdAndUserId(seat.getSeatId(), user.getUserId())
-                .map(history -> history.getReservationDate().equals(seat.getReservedDate()));
-    }
-
     private Mono<Seat> checkAndReserveSeat(Seat seat, User user) {
         return checkReservationHistory(seat, user)
                 .flatMap(historyExists -> {
@@ -54,6 +48,11 @@ public class SeatService {
                     }
                     return updateReservationForSeat(seat, user);
                 });
+    }
+
+    private Mono<Boolean> checkReservationHistory(Seat seat, User user) {
+        return historyRepository.findBySeatIdAndUserId(seat.getSeatId(), user.getUserId())
+                .map(history -> history.getReservationDate().equals(seat.getReservedDate()));
     }
 
     private Mono<Seat> updateReservationForSeat(Seat seat, User user) {

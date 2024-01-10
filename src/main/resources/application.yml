@@ -1,25 +1,24 @@
 spring:
-  datasource:
-    url: jdbc:h2:mem:~/lotte/seat-reservation/h2-console;
-    driver-class-name: org.h2.Driver
   r2dbc:
-    url: r2dbc:h2:mem:~/lotte/seat-reservation/h2-console;
-  jpa:
-    database-platform: H2
-    show-sql: true
-    hibernate:
-      ddl-auto: create-drop
-    generate-ddl: true
-    defer-datasource-initialization: true
-  mvc:
-    hidden method:
-      filter:
-        enabled: true
+    url: r2dbc:h2:mem:///test;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE # H2 데이터베이스 URL
+  h2:
+    console:
+      enabled: true
+      path: h2-console
   sql:
     init:
-      platform: h2
-      data-locations: classpath:initdata.sql
-  autoconfigure:
-    exclude: org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration
+      data-locations: initdata.sql
+      schema-locations: schema.sql
+      mode: always
+  devtools:
+    livereload:
+      enabled: false
+
+#  autoconfigure:
+#    exclude: org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration
 server:
   port: 8080
+
+logging:
+  level:
+    root: info

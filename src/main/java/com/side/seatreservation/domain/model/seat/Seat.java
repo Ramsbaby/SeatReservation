@@ -3,13 +3,16 @@ package com.side.seatreservation.domain.model.seat;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.side.seatreservation.domain.common.CommonEntity;
 import com.side.seatreservation.domain.model.user.User;
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.OneToOne;
 import lombok.*;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Column;
+import org.springframework.data.relational.core.mapping.Table;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-@Entity
 @Getter
 @Setter
 @Builder

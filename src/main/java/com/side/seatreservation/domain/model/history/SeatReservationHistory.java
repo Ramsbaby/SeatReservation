@@ -1,13 +1,14 @@
 package com.side.seatreservation.domain.model.history;
 
-
 import com.side.seatreservation.domain.common.CommonEntity;
-import jakarta.persistence.*;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Table;
 import lombok.*;
 
 import java.time.LocalDate;
 
-@Entity
 @Getter
 @Setter
 @Builder
