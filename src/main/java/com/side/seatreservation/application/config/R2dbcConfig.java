@@ -3,6 +3,7 @@ package com.side.seatreservation.application.config;
 import com.side.seatreservation.infrastructure.utils.WorkTypeReadConverter;
 import com.side.seatreservation.infrastructure.utils.WorkTypeWriteConverter;
 import io.r2dbc.h2.H2ConnectionConfiguration;
+import io.r2dbc.h2.H2ConnectionFactory;
 import io.r2dbc.h2.H2ConnectionOption;
 import io.r2dbc.spi.ConnectionFactory;
 import lombok.val;
@@ -26,7 +27,11 @@ public class R2dbcConfig extends AbstractR2dbcConfiguration {
 
     @Override
     public ConnectionFactory connectionFactory() {
-        return null;
+        return new H2ConnectionFactory(H2ConnectionConfiguration.builder()
+                .inMemory("test") // 데이터베이스 이름
+                .property(H2ConnectionOption.DB_CLOSE_DELAY, "-1") // DB연결이 닫혀도 유지되도록 설정
+                .username("sa")
+                .build());
     }
 
     @Bean
